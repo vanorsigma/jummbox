@@ -1,0 +1,37 @@
+import { Prompt } from "./Prompt";
+import { SongDocument } from "./SongDocument";
+import { FilterEditor } from "./FilterEditor";
+import { SongEditor } from "./SongEditor";
+import { FilterSettings } from "../synth/synth";
+export declare class CustomFilterPrompt implements Prompt {
+    private _doc;
+    private _songEditor;
+    private _useNoteFilter;
+    filterEditor: FilterEditor;
+    filterData: FilterSettings;
+    startingFilterData: FilterSettings;
+    private _subfilterIndex;
+    readonly _playButton: HTMLButtonElement;
+    readonly _filterButtons: HTMLButtonElement[];
+    readonly _filterButtonContainer: HTMLDivElement;
+    private readonly _cancelButton;
+    private readonly _okayButton;
+    private readonly _filterContainer;
+    private readonly _editorTitle;
+    private readonly _filterCopyButton;
+    private readonly _filterPasteButton;
+    private readonly _filterCopyPasteContainer;
+    private readonly _filterCoordinateText;
+    readonly container: HTMLDivElement;
+    constructor(_doc: SongDocument, _songEditor: SongEditor, _useNoteFilter: boolean);
+    private _setSubfilter;
+    private _copyFilterSettings;
+    private _pasteFilterSettings;
+    private _whenKeyPressed;
+    private _togglePlay;
+    updatePlayButton(): void;
+    private _close;
+    cleanUp: () => void;
+    whenKeyPressed: (event: KeyboardEvent) => void;
+    private _saveChanges;
+}

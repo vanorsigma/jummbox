@@ -1,0 +1,51 @@
+import { Prompt } from "./Prompt";
+import { SongDocument } from "./SongDocument";
+import { SongEditor } from "./SongEditor";
+export declare class CustomChipPromptCanvas {
+    private readonly _doc;
+    private _mouseX;
+    private _mouseY;
+    private _lastIndex;
+    private _lastAmp;
+    private _mouseDown;
+    chipData: Float32Array;
+    startingChipData: Float32Array;
+    private _undoHistoryState;
+    private _changeQueue;
+    private readonly _editorWidth;
+    private readonly _editorHeight;
+    private readonly _fill;
+    private readonly _ticks;
+    private readonly _subticks;
+    private readonly _blocks;
+    private readonly _svg;
+    readonly container: HTMLElement;
+    constructor(doc: SongDocument);
+    private _storeChange;
+    undo: () => void;
+    redo: () => void;
+    private _whenKeyPressed;
+    private _whenMousePressed;
+    private _whenTouchPressed;
+    private _whenMouseMoved;
+    private _whenTouchMoved;
+    private _whenCursorMoved;
+    private _whenCursorReleased;
+    render(): void;
+}
+export declare class CustomChipPrompt implements Prompt {
+    private _doc;
+    private _songEditor;
+    customChipCanvas: CustomChipPromptCanvas;
+    readonly _playButton: HTMLButtonElement;
+    private readonly _cancelButton;
+    private readonly _okayButton;
+    readonly container: HTMLDivElement;
+    constructor(_doc: SongDocument, _songEditor: SongEditor);
+    private _togglePlay;
+    updatePlayButton(): void;
+    private _close;
+    cleanUp: () => void;
+    whenKeyPressed: (event: KeyboardEvent) => void;
+    private _saveChanges;
+}

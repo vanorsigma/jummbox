@@ -1,0 +1,32 @@
+import { SongDocument } from "./SongDocument";
+export declare class FadeInOutEditor {
+    private _doc;
+    private readonly _editorWidth;
+    private readonly _editorHeight;
+    private readonly _fadeCurve;
+    private readonly _dottedLinePath;
+    private readonly _controlCurve;
+    private readonly _svg;
+    readonly container: HTMLElement;
+    private _mouseX;
+    private _mouseXStart;
+    private _mouseDown;
+    private _mouseDragging;
+    private _draggingFadeIn;
+    private _dragChange;
+    private _renderedFadeIn;
+    private _renderedFadeOut;
+    constructor(_doc: SongDocument);
+    private _fadeInToX;
+    private _xToFadeIn;
+    private _fadeOutToX;
+    private _xToFadeOut;
+    private _whenMousePressed;
+    private _whenTouchPressed;
+    private _whenCursorPressed;
+    private _whenMouseMoved;
+    private _whenTouchMoved;
+    private _whenCursorMoved;
+    private _whenCursorReleased;
+    render(): void;
+}

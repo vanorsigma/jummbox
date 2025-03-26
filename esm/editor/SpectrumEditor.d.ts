@@ -1,0 +1,32 @@
+import { SongDocument } from "./SongDocument";
+export declare class SpectrumEditor {
+    private _doc;
+    private _spectrumIndex;
+    private readonly _editorWidth;
+    private readonly _editorHeight;
+    private readonly _fill;
+    private readonly _octaves;
+    private readonly _fifths;
+    private readonly _curve;
+    private readonly _arrow;
+    private readonly _svg;
+    readonly container: HTMLElement;
+    private _mouseX;
+    private _mouseY;
+    private _freqPrev;
+    private _ampPrev;
+    private _mouseDown;
+    private _change;
+    private _renderedPath;
+    private _renderedFifths;
+    constructor(_doc: SongDocument, _spectrumIndex: number | null);
+    private _xToFreq;
+    private _yToAmp;
+    private _whenMousePressed;
+    private _whenTouchPressed;
+    private _whenMouseMoved;
+    private _whenTouchMoved;
+    private _whenCursorMoved;
+    private _whenCursorReleased;
+    render(): void;
+}
