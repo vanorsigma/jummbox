@@ -1,0 +1,33 @@
+export declare class Preferences {
+    static readonly defaultVisibleOctaves: number;
+    autoPlay: boolean;
+    autoFollow: boolean;
+    enableNotePreview: boolean;
+    showFifth: boolean;
+    notesOutsideScale: boolean;
+    defaultScale: number;
+    showLetters: boolean;
+    showChannels: boolean;
+    showScrollBar: boolean;
+    alwaysFineNoteVol: boolean;
+    displayVolumeBar: boolean;
+    instrumentCopyPaste: boolean;
+    enableChannelMuting: boolean;
+    colorTheme: string;
+    layout: string;
+    displayBrowserUrl: boolean;
+    volume: number;
+    visibleOctaves: number;
+    pressControlForShortcuts: boolean;
+    keyboardLayout: string;
+    bassOffset: number;
+    enableMidi: boolean;
+    showRecordButton: boolean;
+    snapRecordedNotesToRhythm: boolean;
+    ignorePerformedNotesNotInScale: boolean;
+    metronomeCountIn: boolean;
+    metronomeWhileRecording: boolean;
+    constructor();
+    reload(): void;
+    save(): void;
+}

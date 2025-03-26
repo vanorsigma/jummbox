@@ -1,0 +1,36 @@
+import { SongDocument } from "./SongDocument";
+export declare class BarScrollBar {
+    private _doc;
+    private readonly _editorWidth;
+    private readonly _editorHeight;
+    private readonly _playhead;
+    private readonly _notches;
+    private readonly _handle;
+    private readonly _handleHighlight;
+    private readonly _leftHighlight;
+    private readonly _rightHighlight;
+    private _renderedPlayhead;
+    private readonly _svg;
+    readonly container: HTMLElement;
+    private _mouseX;
+    private _mouseDown;
+    private _mouseOver;
+    private _dragging;
+    private _dragStart;
+    private _notchSpace;
+    private _renderedNotchCount;
+    private _renderedScrollBarPos;
+    constructor(_doc: SongDocument);
+    animatePlayhead: () => void;
+    private _whenMouseOver;
+    private _whenMouseOut;
+    private _whenMousePressed;
+    private _whenTouchPressed;
+    private _whenMouseMoved;
+    private _whenTouchMoved;
+    private _whenCursorMoved;
+    changePos(offset: number): void;
+    private _whenCursorReleased;
+    private _updatePreview;
+    render(): void;
+}

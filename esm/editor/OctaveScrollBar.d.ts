@@ -1,0 +1,38 @@
+import { SongDocument } from "./SongDocument";
+import { Piano } from "./Piano";
+export declare class OctaveScrollBar {
+    private _doc;
+    private _piano;
+    private readonly _editorWidth;
+    private readonly _editorHeight;
+    private readonly _notchHeight;
+    private readonly _octaveCount;
+    private readonly _octaveHeight;
+    private readonly _handle;
+    private readonly _handleHighlight;
+    private readonly _upHighlight;
+    private readonly _downHighlight;
+    private readonly _svg;
+    readonly container: HTMLDivElement;
+    private _mouseY;
+    private _mouseDown;
+    private _mouseOver;
+    private _dragging;
+    private _dragStart;
+    private _barBottom;
+    private _barHeight;
+    private _renderedBarBottom;
+    private _renderedVisibleOctaveCount;
+    private _change;
+    constructor(_doc: SongDocument, _piano: Piano);
+    private _whenMouseOver;
+    private _whenMouseOut;
+    private _whenMousePressed;
+    private _whenTouchPressed;
+    private _whenMouseMoved;
+    private _whenTouchMoved;
+    private _whenCursorMoved;
+    private _whenCursorReleased;
+    private _updatePreview;
+    private _documentChanged;
+}

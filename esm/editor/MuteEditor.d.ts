@@ -1,0 +1,35 @@
+import { SongDocument } from "./SongDocument";
+import { InputBox } from "./HTMLWrapper";
+import { SongEditor } from "./SongEditor";
+export declare class MuteEditor {
+    private _doc;
+    private _editor;
+    private _cornerFiller;
+    private readonly _buttons;
+    private readonly _channelCounts;
+    private readonly _channelNameDisplay;
+    readonly _channelNameInput: InputBox;
+    private readonly _channelDropDown;
+    readonly container: HTMLElement;
+    private _editorHeight;
+    private _renderedPitchChannels;
+    private _renderedNoiseChannels;
+    private _renderedChannelHeight;
+    private _renderedModChannels;
+    private _channelDropDownChannel;
+    private _channelDropDownOpen;
+    private _channelDropDownLastState;
+    constructor(_doc: SongDocument, _editor: SongEditor);
+    private _channelNameInputWhenInput;
+    private _channelNameInputClicked;
+    private _channelNameInputHide;
+    private _channelDropDownClick;
+    private _channelDropDownBlur;
+    private _channelDropDownGetOpenedPosition;
+    private _channelDropDownHandler;
+    private _onClick;
+    private _onMouseMove;
+    private _onMouseLeave;
+    onKeyUp(event: KeyboardEvent): void;
+    render(): void;
+}
