@@ -3176,7 +3176,6 @@ export class Song {
                 // Length of song name string
                 var songNameLength = (base64CharCodeToInt[compressed.charCodeAt(charIndex++)] << 6) + base64CharCodeToInt[compressed.charCodeAt(charIndex++)];
                 this.title = decodeURIComponent(compressed.substring(charIndex, charIndex + songNameLength));
-                document.title = this.title + " - " + EditorConfig.versionDisplayName;
 
                 charIndex += songNameLength;
             } break;
@@ -6216,52 +6215,52 @@ class InstrumentState {
             this.echoDelayOffsetRatioDelta = 1.0 / roundedSamplesPerTick;
 
             const shelfRadians: number = 2.0 * Math.PI * Config.echoShelfHz / synth.samplesPerSecond;
-            Synth.tempFilterStartCoefficients.highShelf1stOrder(shelfRadians, Config.echoShelfGain);
-            this.echoShelfA1 = Synth.tempFilterStartCoefficients.a[1];
-            this.echoShelfB0 = Synth.tempFilterStartCoefficients.b[0];
-            this.echoShelfB1 = Synth.tempFilterStartCoefficients.b[1];
-        }
+      Synth.tempFilterStartCoefficients.highShelf1stOrder(shelfRadians, Config.echoShelfGain);
+      this.echoShelfA1 = Synth.tempFilterStartCoefficients.a[1];
+      this.echoShelfB0 = Synth.tempFilterStartCoefficients.b[0];
+      this.echoShelfB1 = Synth.tempFilterStartCoefficients.b[1];
+    }
 
-        let maxReverbMult = 0.0;
-        if (usesReverb) {
-            //const reverbEnvelopeStart: number = envelopeStarts[InstrumentAutomationIndex.reverb];
-            //const reverbEnvelopeEnd:   number = envelopeEnds[  InstrumentAutomationIndex.reverb];
+    let maxReverbMult = 0.0;
+    if (usesReverb) {
+      //const reverbEnvelopeStart: number = envelopeStarts[InstrumentAutomationIndex.reverb];
+      //const reverbEnvelopeEnd:   number = envelopeEnds[  InstrumentAutomationIndex.reverb];
 
-            let useReverbStart: number = instrument.reverb;
-            let useReverbEnd: number = instrument.reverb;
+      let useReverbStart: number = instrument.reverb;
+      let useReverbEnd: number = instrument.reverb;
 
-            // Check for mod reverb, instrument level
-            if (synth.isModActive(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex)) {
-                useReverbStart = synth.getModValue(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex, false);
-                useReverbEnd = synth.getModValue(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex, true);
-            }
-            // Check for mod reverb, song scalar
-            if (synth.isModActive(Config.modulators.dictionary["song reverb"].index, channelIndex, instrumentIndex)) {
-                useReverbStart *= (synth.getModValue(Config.modulators.dictionary["song reverb"].index, undefined, undefined, false) - Config.modulators.dictionary["song reverb"].convertRealFactor) / Config.reverbRange;
-                useReverbEnd *= (synth.getModValue(Config.modulators.dictionary["song reverb"].index, undefined, undefined, true) - Config.modulators.dictionary["song reverb"].convertRealFactor) / Config.reverbRange;
-            }
+      // Check for mod reverb, instrument level
+      if (synth.isModActive(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex)) {
+        useReverbStart = synth.getModValue(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex, false);
+        useReverbEnd = synth.getModValue(Config.modulators.dictionary["reverb"].index, channelIndex, instrumentIndex, true);
+      }
+      // Check for mod reverb, song scalar
+      if (synth.isModActive(Config.modulators.dictionary["song reverb"].index, channelIndex, instrumentIndex)) {
+        useReverbStart *= (synth.getModValue(Config.modulators.dictionary["song reverb"].index, undefined, undefined, false) - Config.modulators.dictionary["song reverb"].convertRealFactor) / Config.reverbRange;
+        useReverbEnd *= (synth.getModValue(Config.modulators.dictionary["song reverb"].index, undefined, undefined, true) - Config.modulators.dictionary["song reverb"].convertRealFactor) / Config.reverbRange;
+      }
 
-            const reverbStart: number = Math.min(1.0, Math.pow(/*reverbEnvelopeStart **/ useReverbStart / Config.reverbRange, 0.667)) * 0.425;
-            const reverbEnd: number = Math.min(1.0, Math.pow(/*reverbEnvelopeEnd   **/ useReverbEnd / Config.reverbRange, 0.667)) * 0.425;
+      const reverbStart: number = Math.min(1.0, Math.pow(/*reverbEnvelopeStart **/ useReverbStart / Config.reverbRange, 0.667)) * 0.425;
+      const reverbEnd: number = Math.min(1.0, Math.pow(/*reverbEnvelopeEnd   **/ useReverbEnd / Config.reverbRange, 0.667)) * 0.425;
 
-            this.reverbMult = reverbStart;
-            this.reverbMultDelta = (reverbEnd - reverbStart) / roundedSamplesPerTick;
-            maxReverbMult = Math.max(reverbStart, reverbEnd);
+      this.reverbMult = reverbStart;
+      this.reverbMultDelta = (reverbEnd - reverbStart) / roundedSamplesPerTick;
+      maxReverbMult = Math.max(reverbStart, reverbEnd);
 
-            const shelfRadians: number = 2.0 * Math.PI * Config.reverbShelfHz / synth.samplesPerSecond;
-            Synth.tempFilterStartCoefficients.highShelf1stOrder(shelfRadians, Config.reverbShelfGain);
-            this.reverbShelfA1 = Synth.tempFilterStartCoefficients.a[1];
-            this.reverbShelfB0 = Synth.tempFilterStartCoefficients.b[0];
-            this.reverbShelfB1 = Synth.tempFilterStartCoefficients.b[1];
-        }
+      const shelfRadians: number = 2.0 * Math.PI * Config.reverbShelfHz / synth.samplesPerSecond;
+      Synth.tempFilterStartCoefficients.highShelf1stOrder(shelfRadians, Config.reverbShelfGain);
+      this.reverbShelfA1 = Synth.tempFilterStartCoefficients.a[1];
+      this.reverbShelfB0 = Synth.tempFilterStartCoefficients.b[0];
+      this.reverbShelfB1 = Synth.tempFilterStartCoefficients.b[1];
+    }
 
-        if (this.tonesAddedInThisTick) {
-            this.attentuationProgress = 0.0;
-            this.flushedSamples = 0;
-            this.flushingDelayLines = false;
-        } else if (!this.flushingDelayLines) {
-            // If this instrument isn't playing tones anymore, the volume can fade out by the
-            // end of the first tick. It's possible for filters and the panning delay line to
+    if (this.tonesAddedInThisTick) {
+      this.attentuationProgress = 0.0;
+      this.flushedSamples = 0;
+      this.flushingDelayLines = false;
+    } else if (!this.flushingDelayLines) {
+      // If this instrument isn't playing tones anymore, the volume can fade out by the
+      // end of the first tick. It's possible for filters and the panning delay line to
       // continue past the end of the tone but they should have mostly dissipated by the
       // end of the tick anyway.
       if (this.attentuationProgress == 0.0) {
