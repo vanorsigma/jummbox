@@ -8404,8 +8404,6 @@ export class Synth {
         if (pickedStringFunction == undefined) {
             let pickedStringSource = "return (synth, bufferIndex, runLength, tone, instrumentState) => {";
             pickedStringSource += `
-                                const Config = beepbox.Config;
-                                const Synth = beepbox.Synth;
                                 const data = synth.tempMonoInstrumentSampleBuffer;
 
                                 let pickedString# = tone.pickedStrings[#];
