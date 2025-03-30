@@ -16,7 +16,7 @@ export interface Preset extends BeepBoxOption {
     readonly settings?: any;
 }
 
-export const isMobile: boolean = navigator ? /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|android|ipad|playbook|silk/i.test(navigator.userAgent) : false;
+export const isMobile: boolean = false;
 
 export function prettyNumber(value: number): string {
     return value.toFixed(2).replace(/\.?0*$/, "");
@@ -28,7 +28,7 @@ export class EditorConfig {
 
     public static readonly releaseNotesURL: string = "https://jummbus.bitbucket.io/patch_notes/" + EditorConfig.version + ".html";
 
-    public static readonly isOnMac: boolean = /^Mac/i.test(navigator.platform) || /Mac OS X/i.test(navigator.userAgent) || /^(iPhone|iPad|iPod)/i.test(navigator.platform) || /(iPhone|iPad|iPod)/i.test(navigator.userAgent);
+    public static readonly isOnMac: boolean = false;
     public static readonly ctrlSymbol: string = EditorConfig.isOnMac ? "⌘" : "Ctrl+";
     public static readonly ctrlName: string = EditorConfig.isOnMac ? "command" : "control";
 
