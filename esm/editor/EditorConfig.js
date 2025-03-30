@@ -1,5 +1,5 @@
 import { toNameMap } from "../synth/SynthConfig";
-export const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|android|ipad|playbook|silk/i.test(navigator.userAgent);
+export const isMobile = false;
 export function prettyNumber(value) {
     return value.toFixed(2).replace(/\.?0*$/, "");
 }
@@ -35,7 +35,7 @@ export class EditorConfig {
 EditorConfig.version = "2.6";
 EditorConfig.versionDisplayName = "JummBox " + EditorConfig.version;
 EditorConfig.releaseNotesURL = "https://jummbus.bitbucket.io/patch_notes/" + EditorConfig.version + ".html";
-EditorConfig.isOnMac = /^Mac/i.test(navigator.platform) || /Mac OS X/i.test(navigator.userAgent) || /^(iPhone|iPad|iPod)/i.test(navigator.platform) || /(iPhone|iPad|iPod)/i.test(navigator.userAgent);
+EditorConfig.isOnMac = false;
 EditorConfig.ctrlSymbol = EditorConfig.isOnMac ? "⌘" : "Ctrl+";
 EditorConfig.ctrlName = EditorConfig.isOnMac ? "command" : "control";
 EditorConfig.presetCategories = toNameMap([
