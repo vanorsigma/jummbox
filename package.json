@@ -16,6 +16,10 @@
                 "type": "git",
                 "url": "git+https://johnnesky@github.com/johnnesky/beepbox.git"
         },
+       "main": "esm/synth/index.js",
+       "module": "esm/synth/index.js",
+       "browser": "esm/synth/index.js",
+       "types": "esm/synth/index.d.ts",
        "devDependencies": {
          "@rollup/plugin-node-resolve": "^15.1.0",
          "concurrently": "^8.2.2",

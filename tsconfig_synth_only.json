@@ -1,6 +1,6 @@
 {
   "files": [
-    "synth/synth.ts"
+    "synth/index.ts"
   ],
   "compilerOptions": {
     "rootDir": "./",
