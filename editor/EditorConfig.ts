@@ -16,7 +16,7 @@ export interface Preset extends BeepBoxOption {
     readonly settings?: any;
 }
 
-export const isMobile: boolean = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|android|ipad|playbook|silk/i.test(navigator.userAgent);
+export const isMobile: boolean = navigator ? /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|android|ipad|playbook|silk/i.test(navigator.userAgent) : false;
 
 export function prettyNumber(value: number): string {
     return value.toFixed(2).replace(/\.?0*$/, "");
